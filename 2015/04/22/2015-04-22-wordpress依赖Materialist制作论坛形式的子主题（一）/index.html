@@ -1,0 +1,86 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>晚来天欲雪，能饮一杯无？不能。</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link href="/css/bootstrap.min.css" rel="stylesheet"><link href="/css/font-awesome.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"></head><body><div class="wrap"><nav class="page-navigation"><div class="nav-container"><div class="page-header-logo"><h1 class="prince-log"><a href="/" class="home-link">SHAW</a></h1></div><button type="button" data-toggle="collapse" data-target=".main-nav-items" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><ul class="collapse navbar-collapse main-nav-items"><li class="menu-item"><a href="/" target="_self">HOME</a></li><li class="menu-item"><a href="/archives/" target="_self">ARCHIVE</a></li></ul></div></nav><main class="prince-container"><div class="post"><article class="post-block"><h1 class="post-title">wordpress依赖Materialist制作论坛形式的子主题（一）</h1><div class="post-info">Apr 22nd 2015</div><div class="post-entry"><p>让一切从制作子主题开始吧！</p>
+<p>——题记</p>
+<p>目标：制作一个小清新的wordpress论坛主题。</p>
+<p>原因：防止Materialist升级后所作的修改都被清空。</p>
+<p><strong>1、theme文件夹下创建materialist-child文件夹（名称可自选）</strong></p>
+<p><strong>2、创建style.css，并添加以下代码：</strong></p>
+<p>/*</p>
+<p>Theme Name: Materialist Child</p>
+<p>Description: Child theme for the Materialist theme </p>
+<p>Author: hancong</p>
+<p>Template: Materialist</p>
+<p>*/</p>
+<p>@import url(“../materialist/style.css”);</p>
+<p>解析：Theme Name：必填，与其它主题不同的名称；Description：选填；Author：选填；Template：必填，父主题的name；必须引入父主题的style.css，因为有了子主题的style.css，wordpress加载时会跳过父主题的style.css，另外，@import句应该在所有样式语句之前写，否则无效。</p>
+<p><strong>3、后台启动Materialist Child主题。</strong></p>
+<p><img src="/dairy/2015/04/22/2015-04-22-wordpress依赖Materialist制作论坛形式的子主题（一）/6630798385350560300.png" alt="wordpress依赖Materialist制作论坛形式的子主题（一） - 兔子 - 广莫之野，无何有之乡。"></p>
+<p><strong>4、创建functions.php，添加以下代码：</strong></p>
+<p>&lt;?php</p>
+<p>function favicon_link() {</p>
+<p>echo ‘<link rel="icon" href="images/llk.png">‘ . “\n”;</p>
+<p>}</p>
+<p>add_action(‘wp_head’, ‘favicon_link’);</p>
+<p>?&gt;</p>
+<p>为网站添加icon…与style.css跳过加载不同，子主题中的functions.php可以补充／覆盖父主题functions.php中的内容。</p>
+<p>效果图如下：</p>
+<p><img src="/dairy/2015/04/22/2015-04-22-wordpress依赖Materialist制作论坛形式的子主题（一）/6630798385350560300.png" alt="wordpress依赖Materialist制作论坛形式的子主题（一） - 兔子 - 广莫之野，无何有之乡。"></p>
+<p><strong>5、为首页文章列表增加评论详情。</strong></p>
+<ul>
+<li>修改首页每篇文章显示摘要的字数。</li>
+</ul>
+<p>在functions.php中增加以下代码（覆盖父主题对应的方法）：</p>
+<p>if( ! function_exists( ‘materialist_excerpt_length’) ) :</p>
+<p>/**</p>
+<ul>
+<li><p>Modifying excerpt’s length</p>
+</li>
+<li></li>
+<li><p>@return int</p>
+<p>*/</p>
+</li>
+</ul>
+<p>function materialist_excerpt_length(){</p>
+<p>return 30;</p>
+<p>}</p>
+<p>endif;</p>
+<p>add_filter( ‘excerpt_length’, ‘materialist_excerpt_length’ );</p>
+<ul>
+<li>在每篇文章摘要之后添加评论数量。</li>
+</ul>
+<p>复制父主题中的content.php至当前子主题，在class为entry-summary的div后添加：</p>
+<div class="entry-comment"><br><br><a href="<?php echo esc_url( get_permalink() )." #comments"="" ?="">"><span class="comment-num">&lt;?php echo number_format_i18n( get_comments_number()+1 ); ?&gt;#</span></a><br><br></div>
+
+<ul>
+<li>修改相应的样式。</li>
+</ul>
+<p>style.css中添加：</p>
+<p>.entry-comment{</p>
+<p>display:inline-block;</p>
+<p>background: #fff;</p>
+<p>color:#455A64;</p>
+<p>position: absolute;</p>
+<p>right: 30px;</p>
+<p>}</p>
+<p>.entry-comment span{</p>
+<p>display:inline-block;</p>
+<p>padding:0 6px;</p>
+<p>border-radius:9px;</p>
+<p>font-size:12px;</p>
+<p>}</p>
+<p>.entry-comment span:after{</p>
+<p>content:””;</p>
+<p>display:inline-block;</p>
+<p>width:30px;</p>
+<p>height:30px;</p>
+<p>background:url(images/icons.png) no-repeat -235px -100px;</p>
+<p>background-size:500px auto;</p>
+<p>position:absolute;</p>
+<p>left:-30px;</p>
+<p>}</p>
+<p>鼠标在评论图标区域的效果：</p>
+<p> <img src="/dairy/2015/04/22/2015-04-22-wordpress依赖Materialist制作论坛形式的子主题（一）/6630798385350560300.png" alt="wordpress依赖Materialist制作论坛形式的子主题（一） - 兔子 - 广莫之野，无何有之乡。"></p>
+<p>评论数量添加完毕。</p>
+<h2 id="–茕茕白兔–"><a href="#–茕茕白兔–" class="headerlink" title="–茕茕白兔–"></a>–茕茕白兔–</h2><blockquote>
+<p>评论区：<br><strong>兔子：</strong> ？？？  <em>[2015-04-23 22:25:44]</em></p>
+</blockquote>
+</div><div class="post-tags-box"><a class="tag-link" href="/tags/php/">php</a>, <a class="tag-link" href="/tags/wordpress/">wordpress</a>, <a class="tag-link" href="/tags/画风有变！/">画风有变！</a></div></article></div><div class="post-nav"><div class="prev-wrap col-md-6 col-xs-6"><i class="fa fa-angle-double-left"></i><a href="/2015/04/29/2015-04-29-五一前记/" class="prev-post">五一前记</a></div><div class="next-wrap col-md-6 col-xs-6"><a href="/2015/04/21/2015-04-21-周末/" class="next-post">周末</a><i class="fa fa-angle-double-right"></i></div></div></main></div><footer><div class="copyright"><p>Crafted with <i class="fa fa-heart"></i> by&nbsp;SHAW&nbsp;|&nbsp;<a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yiliashaw/hexo-theme-prince" target="_blank">Prince</a> by SHAW</p></div></footer><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.js"></script><script src="/js/script.js"></script></body></html>
