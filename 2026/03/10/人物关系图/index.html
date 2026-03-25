@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="人物关系图"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/dairy/atom.xml" title="无题">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/dairy/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://insekkei.com/dairy/2026/03/10/人物关系图/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/dairy/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 人物关系图 - 无题 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/dairy/." class="logo">无题</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/dairy/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/dairy/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/dairy/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/dairy/." class="logo">无题</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/dairy/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/dairy/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/dairy/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          人物关系图
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2026-03-10
+        </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-content">
+      
+        <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>博客人物关系图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0c0e1a 0%, #1a1c2e 50%, #0c0e1a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  #container { width: 100vw; height: 100vh; position: relative; }
+  canvas { display: block; }
+  
+  .legend {
+    position: fixed; top: 20px; right: 20px;
+    background: rgba(20, 22, 40, 0.92);
+    border: 1px solid rgba(100, 120, 200, 0.3);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 13px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .legend h3 { color: #8b9cf7; margin-bottom: 12px; font-size: 15px; }
+  .legend-item { display: flex; align-items: center; margin: 6px 0; }
+  .legend-dot {
+    width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; flex-shrink: 0;
+  }
+  .legend-line {
+    width: 24px; height: 2px; margin-right: 8px; flex-shrink: 0;
+  }
+  
+  .title-bar {
+    position: fixed; top: 20px; left: 20px;
+    background: rgba(20, 22, 40, 0.92);
+    border: 1px solid rgba(100, 120, 200, 0.3);
+    border-radius: 12px;
+    padding: 16px 24px;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+  .title-bar h1 { font-size: 20px; color: #a0b4ff; margin-bottom: 4px; }
+  .title-bar p { font-size: 12px; color: #7a8aaa; }
+  
+  .tooltip {
+    position: fixed;
+    background: rgba(20, 22, 40, 0.95);
+    border: 1px solid rgba(100, 120, 200, 0.5);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    pointer-events: none;
+    z-index: 100;
+    display: none;
+    max-width: 280px;
+    backdrop-filter: blur(10px);
+  }
+  .tooltip .name { color: #a0b4ff; font-weight: 600; font-size: 15px; }
+  .tooltip .role { color: #7a8aaa; margin-top: 4px; }
+  
+  .controls {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px; z-index: 10;
+  }
+  .controls button {
+    background: rgba(20, 22, 40, 0.9);
+    border: 1px solid rgba(100, 120, 200, 0.3);
+    color: #a0b4ff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: rgba(60, 70, 120, 0.6);
+    border-color: rgba(100, 120, 200, 0.6);
+  }
+</style>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/dairy/atom.xml" title="无题" type="application/atom+xml">
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>博客人物关系图</h1>
+  <p>基于 source/_posts 808篇博文分析 | 2011-2026</p>
+</div>
+
+<div class="legend">
+  <h3>图例</h3>
+  <div style="margin-bottom:8px;color:#9aa;font-size:12px;">-- 节点颜色 --</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff6b9d;"></div>博主（我）</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ff9f43;"></div>核心家庭</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#ffd93d;"></div>我方亲属</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#6bcb77;"></div>L方亲属</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#4d96ff;"></div>朋友</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#9b59b6;"></div>同事</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#00cec9;"></div>学校师友</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#fd79a8;"></div>孩子的朋友</div>
+  <div style="margin:8px 0 4px;color:#9aa;font-size:12px;">-- 连线类型 --</div>
+  <div class="legend-item"><div class="legend-line" style="background:#ff6b9d;"></div>夫妻</div>
+  <div class="legend-item"><div class="legend-line" style="background:#ff9f43;"></div>亲子</div>
+  <div class="legend-item"><div class="legend-line" style="background:#ffd93d;"></div>亲属</div>
+  <div class="legend-item"><div class="legend-line" style="background:#4d96ff;"></div>友谊</div>
+  <div class="legend-item"><div class="legend-line" style="background:#9b59b6;"></div>同事</div>
+  <div class="legend-item"><div class="legend-line" style="background:#00cec9;"></div>师生/同学</div>
+</div>
+
+<div class="tooltip" id="tooltip">
+  <div class="name" id="tt-name"></div>
+  <div class="role" id="tt-role"></div>
+</div>
+
+<div class="controls">
+  <button onclick="resetView()">重置视图</button>
+  <button onclick="togglePhysics()">暂停/恢复</button>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+let W, H;
+let physicsOn = true;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// === DATA ===
+const CAT = {
+  ME: { color: '#ff6b9d', r: 28 },
+  FAMILY: { color: '#ff9f43', r: 22 },
+  MY_REL: { color: '#ffd93d', r: 14 },
+  L_REL: { color: '#6bcb77', r: 14 },
+  FRIEND: { color: '#4d96ff', r: 13 },
+  COWORKER: { color: '#9b59b6', r: 12 },
+  SCHOOL: { color: '#00cec9', r: 12 },
+  KID_FRIEND: { color: '#fd79a8', r: 10 },
+};
+
+const EDGE_COLORS = {
+  spouse: '#ff6b9d',
+  parent: '#ff9f43',
+  relative: '#ffd93d',
+  friend: '#4d96ff',
+  coworker: '#9b59b6',
+  school: '#00cec9',
+};
+
+const nodes = [
+  // Core
+  { id: 'me', label: '我（博主）', cat: 'ME', desc: '博客作者，2011-2026年记录人生' },
+  { id: 'L', label: 'L', cat: 'FAMILY', desc: '丈夫，从恋爱到结婚到育儿，贯穿全部博文' },
+  { id: 'xiaoyu', label: '小宇', cat: 'FAMILY', desc: '儿子，约2019年出生，属猪，活泼好动' },
+  { id: 'xiaochengzi', label: '小橙子', cat: 'FAMILY', desc: '女儿，约2023年出生，慢热型，可爱软萌' },
+  { id: 'mom', label: '老妈', cat: 'FAMILY', desc: '母亲，后来到北京帮忙带孩子' },
+  { id: 'dad', label: '老爸', cat: 'FAMILY', desc: '父亲，已故，博主多次在梦中见到' },
+
+  // 我方亲属
+  { id: 'waipo', label: '外婆', cat: 'MY_REL', desc: '已故，走时身边无人' },
+  { id: 'waigong', label: '外公', cat: 'MY_REL', desc: '已故' },
+  { id: 'dayeye', label: '大爷爷', cat: 'MY_REL', desc: '外公的亲哥哥，超高度近视，八十多岁' },
+  { id: 'po', label: '婆（奶奶）', cat: 'MY_REL', desc: '父方祖母，已故，住窑洞' },
+  { id: 'dage', label: '大哥（表哥）', cat: 'MY_REL', desc: '从小一起长大，后来升职，女儿萱萱' },
+  { id: 'erge', label: '二哥（表哥）', cat: 'MY_REL', desc: '从小一起长大，不爱拍照' },
+  { id: 'dagu', label: '大姑', cat: 'MY_REL', desc: '父亲的姐妹，长得越来越像婆' },
+  { id: 'sangu', label: '三姑', cat: 'MY_REL', desc: '住在村里，博主过年常去拜访' },
+  { id: 'erba', label: '二爸', cat: 'MY_REL', desc: '父亲的兄弟，家在老家' },
+  { id: 'tangjie', label: '堂姐', cat: 'MY_REL', desc: '二爸家，经营快递点，女儿缠缠' },
+  { id: 'tangmei_ying', label: '堂妹（颖）', cat: 'MY_REL', desc: '二爸家，木讷内向但有主意' },
+  { id: 'dabiaojie', label: '大表姐（锋艳姐）', cat: 'MY_REL', desc: '大姑家，近年离婚后过得很好' },
+  { id: 'biaomei_dan', label: '表妹（丹丹）', cat: 'MY_REL', desc: '三姑家，嫁去宝鸡' },
+  { id: 'dabiaoage', label: '大表哥', cat: 'MY_REL', desc: '大姑家，成年后在北京溺亡，童年创伤' },
+  { id: 'jiujiu', label: '舅舅', cat: 'MY_REL', desc: '偶来北京帮忙' },
+  { id: 'xiaoyi', label: '小姨', cat: 'MY_REL', desc: '曾来北京看望' },
+  { id: 'yi', label: '姨', cat: 'MY_REL', desc: '帮忙带孩子、陪老妈体检' },
+  { id: 'laoyifu', label: '老姨父', cat: 'MY_REL', desc: '有专文纪念' },
+  { id: 'hongli', label: '红丽舅妈', cat: 'MY_REL', desc: '本家舅妈，帮忙带孩子办证件' },
+
+  // L方亲属
+  { id: 'L_mom', label: 'L妈妈（婆婆）', cat: 'L_REL', desc: '偶来北京帮忙带小宇' },
+  { id: 'L_dad', label: 'L爸爸（公公）', cat: 'L_REL', desc: '2026年在西安做手术' },
+  { id: 'L_bro', label: 'L弟弟', cat: 'L_REL', desc: 'L的弟弟，做过小手术' },
+  { id: 'L_dimei', label: '弟妹', cat: 'L_REL', desc: 'L弟弟的妻子，带小侄女来北京' },
+  { id: 'L_tangge', label: 'L堂哥', cat: 'L_REL', desc: '多次串门出游，女儿曾患重病' },
+  { id: 'L_tangdi', label: 'L堂弟', cat: 'L_REL', desc: '曾住博主家找工作' },
+  { id: 'L_biaodi', label: 'L表弟', cat: 'L_REL', desc: '寄住过，L的表弟兼学弟' },
+  { id: 'L_gugu', label: 'L姑姑', cat: 'L_REL', desc: '帮忙带过小宇' },
+
+  // 朋友
+  { id: 'xiaopang', label: '小胖', cat: 'FRIEND', desc: 'L的好友，扑克高手，借钱帮买房' },
+  { id: 'hulb', label: '狐萝卜', cat: 'FRIEND', desc: '送生日礼物，一起挑壁纸' },
+  { id: 'feiniao', label: '飞鸟', cat: 'FRIEND', desc: 'L的朋友，一起看话剧' },
+  { id: 'WB', label: 'WB', cat: 'FRIEND', desc: '朋友，西安行，一起打牌' },
+  { id: 'WYY', label: 'WYY', cat: 'FRIEND', desc: '高中同学，后来结婚' },
+  { id: 'XL', label: 'XL/张猫', cat: 'FRIEND', desc: '领证后一起去798' },
+  { id: 'xiaolong', label: '小龙', cat: 'FRIEND', desc: '恋爱中提到的朋友' },
+  { id: 'bingge', label: '兵哥', cat: 'FRIEND', desc: '问中秋去哪玩的朋友' },
+  { id: 'dongdong', label: '栋栋', cat: 'FRIEND', desc: '朋友' },
+  { id: 'xiaocar', label: '小车', cat: 'FRIEND', desc: '"以我为标准找男朋友"的朋友' },
+  { id: 'yangyang_f', label: '洋洋', cat: 'FRIEND', desc: '朋友，刚生小宝宝' },
+  { id: 'liweijie', label: '丽伟姐', cat: 'FRIEND', desc: '毕业时一起哭的姐姐' },
+  { id: 'xm', label: 'xm', cat: 'FRIEND', desc: '去上海读研的朋友' },
+  { id: 'yichun', label: '乙醇/小羊', cat: 'FRIEND', desc: '偶遇故知' },
+  { id: 'cheng', label: '程老师夫妇', cat: 'FRIEND', desc: 'L家友人，理想家庭' },
+
+  // 同事
+  { id: 'link', label: 'Link', cat: 'COWORKER', desc: '多次同事，聊天最多的人' },
+  { id: 'huange', label: '欢哥', cat: 'COWORKER', desc: '帮搬工位，一起射箭' },
+  { id: 'mickey', label: 'Mickey', cat: 'COWORKER', desc: '一起射箭的同事' },
+  { id: 'dy', label: 'dy', cat: 'COWORKER', desc: '同事' },
+  { id: 'sjm', label: 'sjm', cat: 'COWORKER', desc: '前前前同事，断续联系' },
+  { id: 'snow', label: 'Snow', cat: 'COWORKER', desc: '老厂同事' },
+  { id: 'sanmu', label: '三木', cat: 'COWORKER', desc: '技术交流的朋友/同事' },
+  { id: 'LH', label: 'LH', cat: 'COWORKER', desc: '同事，"大为震撼"' },
+  { id: 'binke', label: 'Binke', cat: 'COWORKER', desc: '新同事' },
+  { id: 'pengjie', label: '鹏杰', cat: 'COWORKER', desc: '老乡同事' },
+  { id: 'ttl', label: 'ttl', cat: 'COWORKER', desc: '同事，要当爸爸' },
+  { id: 'jiangxin', label: '蒋欣', cat: 'COWORKER', desc: '同事，送行军床' },
+  { id: 'carolin', label: 'Carolin', cat: 'COWORKER', desc: '同事+朋友，带崽来家吃螃蟹' },
+  { id: 'haishan', label: 'Haishan', cat: 'COWORKER', desc: '同事' },
+  { id: 'mt', label: 'mt', cat: 'COWORKER', desc: '同事' },
+  { id: 'Jge', label: 'J哥', cat: 'COWORKER', desc: '同事，群里甩锅' },
+
+  // 学校
+  { id: 'chenT', label: 'Chen老师', cat: 'SCHOOL', desc: '受欢迎的IT老师' },
+  { id: 'yangT', label: 'Yang老师', cat: 'SCHOOL', desc: '项目老师' },
+  { id: 'WHX', label: 'WHX老师', cat: 'SCHOOL', desc: '班主任' },
+  { id: 'laoli', label: '老李', cat: 'SCHOOL', desc: '小学老师，有专文纪念' },
+  { id: 'xiaohongT', label: '小红老师', cat: 'SCHOOL', desc: '中学数学老师' },
+  { id: 'guodd', label: '郭冬冬', cat: 'SCHOOL', desc: '大学同学' },
+  { id: 'zhengwei', label: '政委（振伟）', cat: 'SCHOOL', desc: '大学同学' },
+  { id: 'yfwz', label: 'yfwz100', cat: 'SCHOOL', desc: '博客互动好友' },
+  { id: 'najie', label: '娜姐', cat: 'SCHOOL', desc: '同学，也是生活委员' },
+  { id: 'xiujin', label: '晓晶', cat: 'SCHOOL', desc: '日语课同学' },
+  { id: 'xiuxiu', label: '秀秀', cat: 'SCHOOL', desc: '室友' },
+
+  // 孩子的朋友
+  { id: 'lingdang', label: '铃铛', cat: 'KID_FRIEND', desc: '小宇互相喜欢的同学' },
+  { id: 'liuliu', label: '六六', cat: 'KID_FRIEND', desc: '和小宇"有仇"后又一起吃饭' },
+  { id: 'yaoyao', label: '瑶瑶姐姐', cat: 'KID_FRIEND', desc: '亲戚家的孩子，暑假玩伴' },
+  { id: 'youyou', label: '悠悠姐姐', cat: 'KID_FRIEND', desc: '二伯家的孩子' },
+  { id: 'panpan', label: '盼盼', cat: 'KID_FRIEND', desc: '小橙子新认识的小朋友' },
+  { id: 'aobing', label: '敖丙', cat: 'KID_FRIEND', desc: '小宇一起骑车的玩伴' },
+  { id: 'guyu', label: '谷雨', cat: 'KID_FRIEND', desc: '和小宇玩耍的哥哥' },
+];
+
+const edges = [
+  // 核心家庭
+  { from: 'me', to: 'L', type: 'spouse', label: '夫妻' },
+  { from: 'me', to: 'xiaoyu', type: 'parent', label: '母子' },
+  { from: 'me', to: 'xiaochengzi', type: 'parent', label: '母女' },
+  { from: 'L', to: 'xiaoyu', type: 'parent', label: '父子' },
+  { from: 'L', to: 'xiaochengzi', type: 'parent', label: '父女' },
+  { from: 'me', to: 'mom', type: 'parent', label: '母女' },
+  { from: 'me', to: 'dad', type: 'parent', label: '父女' },
+
+  // 我方亲属
+  { from: 'mom', to: 'waipo', type: 'relative', label: '母女' },
+  { from: 'mom', to: 'waigong', type: 'relative', label: '' },
+  { from: 'waigong', to: 'dayeye', type: 'relative', label: '兄弟' },
+  { from: 'dad', to: 'po', type: 'relative', label: '母子' },
+  { from: 'me', to: 'dage', type: 'relative', label: '表姐弟' },
+  { from: 'me', to: 'erge', type: 'relative', label: '表姐弟' },
+  { from: 'dad', to: 'dagu', type: 'relative', label: '兄妹' },
+  { from: 'dad', to: 'sangu', type: 'relative', label: '兄妹' },
+  { from: 'dad', to: 'erba', type: 'relative', label: '兄弟' },
+  { from: 'erba', to: 'tangjie', type: 'relative', label: '父女' },
+  { from: 'erba', to: 'tangmei_ying', type: 'relative', label: '父女' },
+  { from: 'dagu', to: 'dabiaojie', type: 'relative', label: '母女' },
+  { from: 'dagu', to: 'dabiaoage', type: 'relative', label: '母子' },
+  { from: 'sangu', to: 'biaomei_dan', type: 'relative', label: '母女' },
+  { from: 'mom', to: 'jiujiu', type: 'relative', label: '兄妹' },
+  { from: 'mom', to: 'xiaoyi', type: 'relative', label: '姐妹' },
+  { from: 'mom', to: 'yi', type: 'relative', label: '姐妹' },
+  { from: 'me', to: 'laoyifu', type: 'relative', label: '老姨父' },
+  { from: 'me', to: 'hongli', type: 'relative', label: '本家舅妈' },
+
+  // L方亲属
+  { from: 'L', to: 'L_mom', type: 'relative', label: '母子' },
+  { from: 'L', to: 'L_dad', type: 'relative', label: '父子' },
+  { from: 'L', to: 'L_bro', type: 'relative', label: '兄弟' },
+  { from: 'L_bro', to: 'L_dimei', type: 'spouse', label: '夫妻' },
+  { from: 'L', to: 'L_tangge', type: 'relative', label: '堂兄弟' },
+  { from: 'L', to: 'L_tangdi', type: 'relative', label: '堂兄弟' },
+  { from: 'L', to: 'L_biaodi', type: 'relative', label: '表兄弟' },
+  { from: 'L', to: 'L_gugu', type: 'relative', label: '姑侄' },
+
+  // 朋友
+  { from: 'me', to: 'hulb', type: 'friend', label: '好友' },
+  { from: 'me', to: 'WYY', type: 'friend', label: '高中同学' },
+  { from: 'me', to: 'XL', type: 'friend', label: '好友' },
+  { from: 'me', to: 'xiaolong', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'xiaocar', type: 'friend', label: '好友' },
+  { from: 'me', to: 'yangyang_f', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'liweijie', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'xm', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'yichun', type: 'friend', label: '偶遇故知' },
+  { from: 'L', to: 'xiaopang', type: 'friend', label: 'L好友' },
+  { from: 'L', to: 'feiniao', type: 'friend', label: 'L朋友' },
+  { from: 'L', to: 'WB', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'bingge', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'dongdong', type: 'friend', label: '朋友' },
+  { from: 'me', to: 'cheng', type: 'friend', label: '长辈友人' },
+
+  // 同事
+  { from: 'me', to: 'link', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'huange', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'mickey', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'dy', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'sjm', type: 'coworker', label: '前同事' },
+  { from: 'me', to: 'snow', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'sanmu', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'LH', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'binke', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'pengjie', type: 'coworker', label: '老乡同事' },
+  { from: 'me', to: 'ttl', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'jiangxin', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'carolin', type: 'coworker', label: '同事+朋友' },
+  { from: 'me', to: 'haishan', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'mt', type: 'coworker', label: '同事' },
+  { from: 'me', to: 'Jge', type: 'coworker', label: '同事' },
+
+  // 学校
+  { from: 'me', to: 'chenT', type: 'school', label: '师生' },
+  { from: 'me', to: 'yangT', type: 'school', label: '师生' },
+  { from: 'me', to: 'WHX', type: 'school', label: '师生' },
+  { from: 'me', to: 'laoli', type: 'school', label: '师生' },
+  { from: 'me', to: 'xiaohongT', type: 'school', label: '师生' },
+  { from: 'me', to: 'guodd', type: 'school', label: '同学' },
+  { from: 'me', to: 'zhengwei', type: 'school', label: '同学' },
+  { from: 'me', to: 'yfwz', type: 'school', label: '博客好友' },
+  { from: 'me', to: 'najie', type: 'school', label: '同学' },
+  { from: 'me', to: 'xiujin', type: 'school', label: '同学' },
+  { from: 'me', to: 'xiuxiu', type: 'school', label: '室友' },
+
+  // 孩子的朋友
+  { from: 'xiaoyu', to: 'lingdang', type: 'friend', label: '同学' },
+  { from: 'xiaoyu', to: 'liuliu', type: 'friend', label: '同学' },
+  { from: 'xiaoyu', to: 'yaoyao', type: 'friend', label: '玩伴' },
+  { from: 'xiaoyu', to: 'youyou', type: 'friend', label: '玩伴' },
+  { from: 'xiaoyu', to: 'aobing', type: 'friend', label: '玩伴' },
+  { from: 'xiaoyu', to: 'guyu', type: 'friend', label: '玩伴' },
+  { from: 'xiaochengzi', to: 'panpan', type: 'friend', label: '玩伴' },
+];
+
+// === PHYSICS ===
+const nodeMap = {};
+nodes.forEach((n, i) => {
+  const angle = (i / nodes.length) * Math.PI * 2;
+  const r = 150 + Math.random() * 200;
+  n.x = W / 2 + Math.cos(angle) * r;
+  n.y = H / 2 + Math.sin(angle) * r;
+  n.vx = 0;
+  n.vy = 0;
+  n.r = CAT[n.cat].r;
+  n.color = CAT[n.cat].color;
+  nodeMap[n.id] = n;
+});
+
+// Place "me" at center
+nodeMap['me'].x = W / 2;
+nodeMap['me'].y = H / 2;
+
+function simulate() {
+  if (!physicsOn) return;
+  
+  const dt = 0.3;
+  const repulsion = 3000;
+  const attraction = 0.008;
+  const damping = 0.85;
+  const centerPull = 0.001;
+
+  // Repulsion between all nodes
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      let dx = b.x - a.x, dy = b.y - a.y;
+      let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      let force = repulsion / (dist * dist);
+      let fx = (dx / dist) * force;
+      let fy = (dy / dist) * force;
+      a.vx -= fx * dt; a.vy -= fy * dt;
+      b.vx += fx * dt; b.vy += fy * dt;
+    }
+  }
+
+  // Attraction along edges
+  edges.forEach(e => {
+    const a = nodeMap[e.from], b = nodeMap[e.to];
+    if (!a || !b) return;
+    let dx = b.x - a.x, dy = b.y - a.y;
+    let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    let idealLen = (e.type === 'spouse' || e.type === 'parent') ? 80 : 140;
+    let force = (dist - idealLen) * attraction;
+    let fx = (dx / dist) * force;
+    let fy = (dy / dist) * force;
+    a.vx += fx * dt; a.vy += fy * dt;
+    b.vx -= fx * dt; b.vy -= fy * dt;
+  });
+
+  // Center gravity
+  nodes.forEach(n => {
+    n.vx += (W / 2 - n.x) * centerPull;
+    n.vy += (H / 2 - n.y) * centerPull;
+    n.vx *= damping;
+    n.vy *= damping;
+    n.x += n.vx * dt;
+    n.y += n.vy * dt;
+    // Bounds
+    n.x = Math.max(n.r, Math.min(W - n.r, n.x));
+    n.y = Math.max(n.r, Math.min(H - n.r, n.y));
+  });
+}
+
+// === RENDER ===
+let offsetX = 0, offsetY = 0, scale = 1;
+
+function toScreen(x, y) {
+  return [(x + offsetX) * scale, (y + offsetY) * scale];
+}
+function toWorld(sx, sy) {
+  return [sx / scale - offsetX, sy / scale - offsetY];
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  ctx.save();
+  ctx.scale(scale, scale);
+  ctx.translate(offsetX, offsetY);
+
+  // Draw edges
+  edges.forEach(e => {
+    const a = nodeMap[e.from], b = nodeMap[e.to];
+    if (!a || !b) return;
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.strokeStyle = EDGE_COLORS[e.type] || '#444';
+    ctx.globalAlpha = 0.25;
+    ctx.lineWidth = e.type === 'spouse' ? 2.5 : e.type === 'parent' ? 2 : 1.2;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  });
+
+  // Draw nodes
+  nodes.forEach(n => {
+    // Glow
+    const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 2);
+    grad.addColorStop(0, n.color + '40');
+    grad.addColorStop(1, 'transparent');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r * 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Circle
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = n.color + 'cc';
+    ctx.fill();
+    ctx.strokeStyle = n.color;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Label
+    ctx.fillStyle = '#fff';
+    ctx.font = `${n.id === 'me' ? 'bold 14px' : '12px'} "PingFang SC", "Microsoft YaHei", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    
+    // Truncate if needed
+    let label = n.label;
+    if (label.length > 6) label = label.substring(0, 5) + '…';
+    ctx.fillText(label, n.x, n.y + n.r + 14);
+  });
+
+  // Highlight hovered
+  if (hoveredNode) {
+    const n = hoveredNode;
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r + 4, 0, Math.PI * 2);
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+function loop() {
+  simulate();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+// === INTERACTION ===
+let hoveredNode = null;
+let dragNode = null;
+let isPanning = false;
+let lastMouse = { x: 0, y: 0 };
+
+function getNodeAt(mx, my) {
+  const [wx, wy] = toWorld(mx, my);
+  for (let i = nodes.length - 1; i >= 0; i--) {
+    const n = nodes[i];
+    const dx = wx - n.x, dy = wy - n.y;
+    if (dx * dx + dy * dy < (n.r + 4) * (n.r + 4)) return n;
+  }
+  return null;
+}
+
+canvas.addEventListener('mousemove', e => {
+  const mx = e.clientX, my = e.clientY;
+  
+  if (dragNode) {
+    const [wx, wy] = toWorld(mx, my);
+    dragNode.x = wx;
+    dragNode.y = wy;
+    dragNode.vx = 0;
+    dragNode.vy = 0;
+    return;
+  }
+  
+  if (isPanning) {
+    const dx = (mx - lastMouse.x) / scale;
+    const dy = (my - lastMouse.y) / scale;
+    offsetX += dx;
+    offsetY += dy;
+    lastMouse.x = mx;
+    lastMouse.y = my;
+    return;
+  }
+  
+  const n = getNodeAt(mx, my);
+  hoveredNode = n;
+  canvas.style.cursor = n ? 'pointer' : 'grab';
+  
+  if (n) {
+    tooltip.style.display = 'block';
+    tooltip.style.left = (mx + 15) + 'px';
+    tooltip.style.top = (my + 15) + 'px';
+    document.getElementById('tt-name').textContent = n.label;
+    document.getElementById('tt-role').textContent = n.desc;
+  } else {
+    tooltip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('mousedown', e => {
+  const mx = e.clientX, my = e.clientY;
+  const n = getNodeAt(mx, my);
+  if (n) {
+    dragNode = n;
+    canvas.style.cursor = 'grabbing';
+  } else {
+    isPanning = true;
+    lastMouse.x = mx;
+    lastMouse.y = my;
+    canvas.style.cursor = 'grabbing';
+  }
+});
+
+canvas.addEventListener('mouseup', () => {
+  dragNode = null;
+  isPanning = false;
+  canvas.style.cursor = 'grab';
+});
+
+canvas.addEventListener('wheel', e => {
+  e.preventDefault();
+  const factor = e.deltaY > 0 ? 0.9 : 1.1;
+  const mx = e.clientX, my = e.clientY;
+  // Zoom toward mouse
+  offsetX -= mx / scale;
+  offsetY -= my / scale;
+  scale *= factor;
+  scale = Math.max(0.3, Math.min(3, scale));
+  offsetX += mx / scale;
+  offsetY += my / scale;
+}, { passive: false });
+
+function resetView() {
+  offsetX = 0; offsetY = 0; scale = 1;
+  nodes.forEach((n, i) => {
+    const angle = (i / nodes.length) * Math.PI * 2;
+    const r = 150 + Math.random() * 200;
+    n.x = W / 2 + Math.cos(angle) * r;
+    n.y = H / 2 + Math.sin(angle) * r;
+    n.vx = 0; n.vy = 0;
+  });
+  nodeMap['me'].x = W / 2;
+  nodeMap['me'].y = H / 2;
+}
+
+function togglePhysics() {
+  physicsOn = !physicsOn;
+}
+
+loop();
+</script>
+</body>
+</html>
+
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/dairy/2026/03/11/2026-03-11/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">2026-03-11 星期三</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/dairy/2026/03/09/2026-03-09/">
+        <span class="next-text nav-default">2026-03-09 星期一</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    <div id="comment"></div>
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/dairy/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2026
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Insekkei</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/dairy/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/dairy/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/dairy/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/dairy/js/src/bootstrap.js?v=2.6.0"></script>
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+      new Valine({
+        el: '#comment' ,
+        notify:false,
+        verify:false,
+        app_id: 'KORVebBghnB975fVi2RnWRja-gzGzoHsz',
+        app_key: 'UVp0LzgEN99j2ljWKC5oQFW5',
+        placeholder: '啥？风太大，我听不清～～',
+        path:window.location.pathname,
+        avatar:'mm',
+        guest_info: ['nick', 'mail']
+      });
+    </script>
+  </body>
+</html>
